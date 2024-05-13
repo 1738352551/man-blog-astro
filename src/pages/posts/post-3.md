@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: 我的第三篇博客文章
 author: 陈慢慢
 description: "我遇到了一些问题，但是在社区里面提问真的很有帮助！"

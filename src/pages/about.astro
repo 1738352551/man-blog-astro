@@ -1,7 +1,5 @@
 ---
-import '../styles/global.css';
-import Footer from '../components/Footer.astro';
-import Navigation from '../components/Navigation.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "关于我";
 
 const identity = {
@@ -21,48 +19,38 @@ const skillWeight = "bold";
 const skillCase = "uppercase";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor, skillWeight, skillCase}}>
-            h1 {
-              color: purple;
-              font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: var(--skillWeight);
-                text-transform: var(--skillCase);
-            }
-        </style>
-	</head>
-	<body>
-        <Navigation />
-		<h1>这个是关于我的页面</h1>
-        <p>
-            下面是我对自己的一些介绍: 
-        </p>
-        <ul>
-            <li>我的名字是{identity.name}</li>
-            <li>我住在{identity.country}, 我的职业是{identity.occupation}</li>
-            { identity.hobbies.length>=2 && <li>我的两个爱好: {identity.hobbies[0]} 和 {identity.hobbies[1]}</li> }
-        </ul>
-        <p>
-            我的技能是:
-        </p>
-        <ul>
-            {skills.map((skill)=> <li class="skill">{skill}</li>)}
-        </ul>
+<BaseLayout pageTitle={pageTitle}>
+    <h1>这个是关于我的页面</h1>
+    <p>
+        下面是我对自己的一些介绍: 
+    </p>
+    <ul>
+        <li>我的名字是{identity.name}</li>
+        <li>我住在{identity.country}, 我的职业是{identity.occupation}</li>
+        { identity.hobbies.length>=2 && <li>我的两个爱好: {identity.hobbies[0]} 和 {identity.hobbies[1]}</li> }
+    </ul>
+    <p>
+        我的技能是:
+    </p>
+    <ul>
+        {skills.map((skill)=> <li class="skill">{skill}</li>)}
+    </ul>
 
-        {happy && <p>我非常乐意学习 Astro！</p>}
+    {happy && <p>我非常乐意学习 Astro！</p>}
 
-        {finished && <p>我完成了这节教程！</p>}
+    {finished && <p>我完成了这节教程！</p>}
 
-        {goal === 3 ? <p>我的目标是在三天内完成。</p> : <p>我的目标不是 3 天。</p>}
-        <Footer/>
-    </body>
-</html>
+    {goal === 3 ? <p>我的目标是在三天内完成。</p> : <p>我的目标不是 3 天。</p>}
+</BaseLayout>
+
+<style define:vars={{skillColor, skillWeight, skillCase}}>
+    h1 {
+      color: purple;
+      font-size: 4rem;
+    }
+    .skill {
+        color: var(--skillColor);
+        font-weight: var(--skillWeight);
+        text-transform: var(--skillCase);
+    }
+</style>
